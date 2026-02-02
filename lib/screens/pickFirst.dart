@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xo_game/screens/gmae_board.dart';
 import 'package:xo_game/screens/gradient_scaffold.dart';
-import 'XO.dart';
 
 class Pickfirst extends StatelessWidget {
   static const String routeName = "Pick_First";
@@ -48,14 +47,16 @@ class Pickfirst extends StatelessWidget {
                     arguments: "X",
                   );
                 },
-                child: Container(
-                  margin: EdgeInsets.only(left: 16, bottom: 26, top: 17),
-                  padding: EdgeInsets.all(39),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(32),
+                child: Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 16, bottom: 26, top: 17),
+                    padding: EdgeInsets.all(35),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(32),
+                    ),
+                    child: Image.asset("images/x.png"),
                   ),
-                  child: Image.asset("images/x.png"),
                 ),
               ),
               InkWell(
@@ -66,14 +67,16 @@ class Pickfirst extends StatelessWidget {
                     arguments: "O",
                   );
                 },
-                child: Container(
-                  margin: EdgeInsets.only(left: 16, bottom: 26, top: 17),
-                  padding: EdgeInsets.all(39),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(32),
+                child: Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 16, bottom: 26, top: 17),
+                    padding: EdgeInsets.all(35),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(32),
+                    ),
+                    child: Image.asset("images/o.png"),
                   ),
-                  child: Image.asset("images/o.png"),
                 ),
               ),
             ],
