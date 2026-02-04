@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:xo_game/screens/XO.dart';
 import 'package:xo_game/screens/gradient_scaffold.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class GmaeBoard extends StatefulWidget {
   static const String routeName = "game_board";
@@ -36,14 +37,7 @@ class _GmaeBoardState extends State<GmaeBoard> {
       turnTxt = "Player \"$_turn\" Turn";
     }
     return GradientScaffold(
-      body: Column(
-        children: [
-          buildStopWatch(),
-          firstTurn(),
-          gameDesign(),
-          buildResetBtn(),
-        ],
-      ),
+      body: Column(children: [buildStopWatch(), firstTurn(), gameDesign()]),
     );
   }
 
@@ -51,35 +45,6 @@ class _GmaeBoardState extends State<GmaeBoard> {
     timer = Timer.periodic(Duration(seconds: 1), (_) {
       setState(() {});
     });
-  }
-
-  ElevatedButton buildResetBtn() {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        minimumSize: const Size(200, 20),
-        backgroundColor: const Color.fromARGB(255, 47, 154, 241),
-        elevation: 8,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      ),
-      onPressed: () {
-        setState(() {
-          gameSymbol.fillRange(0, gameSymbol.length, "");
-          gameOver = false;
-
-          startTimer();
-          turnTxt = 'Player "$_turn" Turn';
-        });
-      },
-      child: const Text(
-        "RESET",
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: Colors.black,
-          letterSpacing: 1.5,
-        ),
-      ),
-    );
   }
 
   Widget buildStopWatch() {
@@ -151,10 +116,41 @@ class _GmaeBoardState extends State<GmaeBoard> {
         if (checkWinner()) {
           turnTxt = "Player \"$_turn\" Won";
           gameOver = true;
+          AwesomeDialog(
+            context: context,
+            dialogType: DialogType.success,
+            animType: AnimType.rightSlide,
+            title: "Player \"$_turn\" Won",
+            btnOkText: "Play Again",
+            btnOkOnPress: () {
+              setState(() {
+                gameSymbol.fillRange(0, gameSymbol.length, "");
+                gameOver = false;
+                startTimer();
+                turnTxt = 'Player "$_turn" Turn';
+              });
+            },
+          ).show();
           timer.cancel();
         } else if (!gameSymbol.contains("")) {
           // All cells filled, no winner = Draw
           turnTxt = "Draw";
+          AwesomeDialog(
+            context: context,
+            dialogType: DialogType.info,
+            animType: AnimType.rightSlide,
+            title: "DRAW",
+            btnOkText: "Play Again",
+            btnOkOnPress: () {
+              setState(() {
+                gameSymbol.fillRange(0, gameSymbol.length, "");
+                gameOver = false;
+
+                startTimer();
+                turnTxt = 'Player "$_turn" Turn';
+              });
+            },
+          ).show();
           gameOver = true;
           timer.cancel();
         } else {

@@ -47,16 +47,14 @@ class Pickfirst extends StatelessWidget {
                     arguments: "X",
                   );
                 },
-                child: Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(left: 16, bottom: 26, top: 17),
-                    padding: EdgeInsets.all(35),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    child: Image.asset("images/x.png"),
+                child: Container(
+                  margin: EdgeInsets.only(left: 16, bottom: 26, top: 17),
+                  padding: EdgeInsets.all(35),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(32),
                   ),
+                  child: Image.asset("images/x.png"),
                 ),
               ),
               InkWell(
@@ -67,16 +65,14 @@ class Pickfirst extends StatelessWidget {
                     arguments: "O",
                   );
                 },
-                child: Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(left: 16, bottom: 26, top: 17),
-                    padding: EdgeInsets.all(35),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    child: Image.asset("images/o.png"),
+                child: Container(
+                  margin: EdgeInsets.only(left: 16, bottom: 26, top: 17),
+                  padding: EdgeInsets.all(35),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(32),
                   ),
+                  child: Image.asset("images/o.png"),
                 ),
               ),
             ],
